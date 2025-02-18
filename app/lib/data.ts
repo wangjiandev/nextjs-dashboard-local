@@ -5,6 +5,7 @@ import { sql, eq, desc, count, ilike, or, asc } from "drizzle-orm";
 
 export async function fetchRevenue() {
   try {
+    console.log("王健");
     console.log("Fetching revenue data...");
     await new Promise((resolve) => setTimeout(resolve, 3000));
     const data = await db.select().from(Revenue);
@@ -146,6 +147,16 @@ export async function fetchInvoicesPages(query: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch total number of invoices.");
+  }
+}
+
+export async function fetchInvoices() {
+  try {
+    const invoices = await db.select().from(Invoice);
+    return invoices;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch total number invoices.");
   }
 }
 
